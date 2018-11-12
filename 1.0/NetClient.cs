@@ -97,6 +97,11 @@ namespace Bitnet.Client
       }
       return (float)InvokeMethod("getbalance", a_account, a_minconf)["result"];
     }
+    
+    public float GetBalance()
+    {
+      return (float)InvokeMethod("getbalance")["result"];
+    }
 
     public string GetBlockByCount(int a_height)
     {
