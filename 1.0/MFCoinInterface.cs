@@ -12,6 +12,11 @@ namespace Sagleft.MFCoin
 		decimal getbalance();
 		
 		/// <summary>
+	    /// Получить баланс кошелька по определенному аккаунту
+	    /// </summary>
+		decimal getbalance(string account);
+		
+		/// <summary>
 	    /// true, если получилось подключиться к кошельку по RPC, иначе false
 	    /// </summary>
 		bool rpcauth(string username, string password);

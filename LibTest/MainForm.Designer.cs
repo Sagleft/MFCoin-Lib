@@ -60,6 +60,11 @@ namespace LibTest
 			this.rpc_user = new System.Windows.Forms.TextBox();
 			this.button_auth = new System.Windows.Forms.Button();
 			this.tabPage2 = new System.Windows.Forms.TabPage();
+			this.Баланс = new System.Windows.Forms.GroupBox();
+			this.label8 = new System.Windows.Forms.Label();
+			this.getbalance_conf_num = new System.Windows.Forms.NumericUpDown();
+			this.button_getbalance_conf = new System.Windows.Forms.Button();
+			this.button_get_fullBalance = new System.Windows.Forms.Button();
 			this.panel1 = new System.Windows.Forms.Panel();
 			this.groupBox3 = new System.Windows.Forms.GroupBox();
 			this.button_clearlog = new System.Windows.Forms.Button();
@@ -72,6 +77,9 @@ namespace LibTest
 			this.groupBox1.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.pic_isConnected)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
+			this.tabPage2.SuspendLayout();
+			this.Баланс.SuspendLayout();
+			((System.ComponentModel.ISupportInitialize)(this.getbalance_conf_num)).BeginInit();
 			this.panel1.SuspendLayout();
 			this.groupBox3.SuspendLayout();
 			this.SuspendLayout();
@@ -301,13 +309,67 @@ namespace LibTest
 			// 
 			// tabPage2
 			// 
+			this.tabPage2.Controls.Add(this.Баланс);
 			this.tabPage2.Location = new System.Drawing.Point(4, 22);
 			this.tabPage2.Name = "tabPage2";
 			this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-			this.tabPage2.Size = new System.Drawing.Size(776, 535);
+			this.tabPage2.Size = new System.Drawing.Size(554, 535);
 			this.tabPage2.TabIndex = 1;
 			this.tabPage2.Text = "Данные";
 			this.tabPage2.UseVisualStyleBackColor = true;
+			// 
+			// Баланс
+			// 
+			this.Баланс.Controls.Add(this.label8);
+			this.Баланс.Controls.Add(this.getbalance_conf_num);
+			this.Баланс.Controls.Add(this.button_getbalance_conf);
+			this.Баланс.Controls.Add(this.button_get_fullBalance);
+			this.Баланс.Location = new System.Drawing.Point(8, 6);
+			this.Баланс.Name = "Баланс";
+			this.Баланс.Size = new System.Drawing.Size(540, 94);
+			this.Баланс.TabIndex = 0;
+			this.Баланс.TabStop = false;
+			this.Баланс.Text = "groupBox4";
+			// 
+			// label8
+			// 
+			this.label8.Location = new System.Drawing.Point(230, 48);
+			this.label8.Name = "label8";
+			this.label8.Size = new System.Drawing.Size(100, 23);
+			this.label8.TabIndex = 2;
+			this.label8.Text = "подтверждений";
+			// 
+			// getbalance_conf_num
+			// 
+			this.getbalance_conf_num.Location = new System.Drawing.Point(140, 48);
+			this.getbalance_conf_num.Name = "getbalance_conf_num";
+			this.getbalance_conf_num.Size = new System.Drawing.Size(83, 20);
+			this.getbalance_conf_num.TabIndex = 1;
+			this.getbalance_conf_num.Value = new decimal(new int[] {
+									1,
+									0,
+									0,
+									0});
+			// 
+			// button_getbalance_conf
+			// 
+			this.button_getbalance_conf.Location = new System.Drawing.Point(6, 48);
+			this.button_getbalance_conf.Name = "button_getbalance_conf";
+			this.button_getbalance_conf.Size = new System.Drawing.Size(127, 23);
+			this.button_getbalance_conf.TabIndex = 0;
+			this.button_getbalance_conf.Text = "Запросить баланс с";
+			this.button_getbalance_conf.UseVisualStyleBackColor = true;
+			this.button_getbalance_conf.Click += new System.EventHandler(this.Button_get_balanceConf);
+			// 
+			// button_get_fullBalance
+			// 
+			this.button_get_fullBalance.Location = new System.Drawing.Point(6, 19);
+			this.button_get_fullBalance.Name = "button_get_fullBalance";
+			this.button_get_fullBalance.Size = new System.Drawing.Size(198, 23);
+			this.button_get_fullBalance.TabIndex = 0;
+			this.button_get_fullBalance.Text = "Запросить суммарный баланс";
+			this.button_get_fullBalance.UseVisualStyleBackColor = true;
+			this.button_get_fullBalance.Click += new System.EventHandler(this.Button_get_fullBalanceClick);
 			// 
 			// panel1
 			// 
@@ -337,6 +399,7 @@ namespace LibTest
 			this.button_clearlog.TabIndex = 1;
 			this.button_clearlog.Text = "Очистить лог";
 			this.button_clearlog.UseVisualStyleBackColor = true;
+			this.button_clearlog.Click += new System.EventHandler(this.Button_clearlogClick);
 			// 
 			// log_w
 			// 
@@ -366,10 +429,18 @@ namespace LibTest
 			this.groupBox1.PerformLayout();
 			((System.ComponentModel.ISupportInitialize)(this.pic_isConnected)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
+			this.tabPage2.ResumeLayout(false);
+			this.Баланс.ResumeLayout(false);
+			((System.ComponentModel.ISupportInitialize)(this.getbalance_conf_num)).EndInit();
 			this.panel1.ResumeLayout(false);
 			this.groupBox3.ResumeLayout(false);
 			this.ResumeLayout(false);
 		}
+		private System.Windows.Forms.Button button_getbalance_conf;
+		private System.Windows.Forms.NumericUpDown getbalance_conf_num;
+		private System.Windows.Forms.Label label8;
+		private System.Windows.Forms.Button button_get_fullBalance;
+		private System.Windows.Forms.GroupBox Баланс;
 		private System.Windows.Forms.Panel panel1;
 		private System.Windows.Forms.PictureBox pic_isConnected;
 		private System.Windows.Forms.RichTextBox log_w;

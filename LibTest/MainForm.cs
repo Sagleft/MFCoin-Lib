@@ -21,6 +21,10 @@ namespace LibTest {
 			log_w.Text += "\r > "+info;
 		}
 		
+		public void clear_log() {
+			log_w.Text = "";
+		}
+		
 		void Button_authClick(object sender, EventArgs e) {
 			int port;
 			decimal balance = 0;
@@ -49,7 +53,27 @@ namespace LibTest {
 		}
 		
 		void Button_clearlogClick(object sender, EventArgs e) {
-			log_w.Text = "";
+			clear_log();
+		}
+		
+		void Button_get_fullBalanceClick(object sender, EventArgs e) {
+			decimal wallet_balance;
+			try {
+				wallet_balance = mfcoin_client.getbalance();
+				write_log("Суммарный баланс: "+wallet_balance.ToString());
+			} catch(Exception exc) {
+				write_log("Выловлена ошибка: "+exc.Message);
+			}
+		}
+		
+		void Button_get_balanceConf(object sender, EventArgs e) {
+			decimal wallet_balance;
+			try {
+				wallet_balance = mfcoin_client.getbalance((int)getbalance_conf_num.Value);
+				write_log("Суммарный баланс: "+wallet_balance.ToString());
+			} catch(Exception exc) {
+				write_log("Выловлена ошибка: "+exc.Message);
+			}
 		}
 	}
 }

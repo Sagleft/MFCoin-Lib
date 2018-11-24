@@ -39,5 +39,9 @@ namespace Sagleft.MFCoin {
 		public decimal getbalance() {
 			return (decimal)client.GetBalance();
 		}
+		
+		public decimal getbalance(int confirmations) {
+			return (decimal)client.GetBalance(confirmations);
+		}
 	}
 }
