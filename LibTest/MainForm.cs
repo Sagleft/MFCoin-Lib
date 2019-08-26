@@ -66,10 +66,15 @@ namespace LibTest {
 			}
 		}
 		
-		void Button_get_balanceConf(object sender, EventArgs e) {
+		void getbalance_by_accountClick(object sender, EventArgs e) {
 			decimal wallet_balance;
 			try {
-				wallet_balance = mfcoin_client.getbalance((int)getbalance_conf_num.Value);
+				if(checkbox_use_confirmations.Checked == true) {
+					wallet_balance = mfcoin_client.getbalance(account_name.Text, (int)numeric_blanace_confirms.Value);
+				} else {
+					wallet_balance = mfcoin_client.getbalance(account_name.Text);
+				}
+				
 				write_log("Суммарный баланс: "+wallet_balance.ToString());
 			} catch(Exception exc) {
 				write_log("Выловлена ошибка: "+exc.Message);

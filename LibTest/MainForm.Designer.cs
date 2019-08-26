@@ -61,9 +61,10 @@ namespace LibTest
 			this.button_auth = new System.Windows.Forms.Button();
 			this.tabPage2 = new System.Windows.Forms.TabPage();
 			this.Баланс = new System.Windows.Forms.GroupBox();
-			this.label8 = new System.Windows.Forms.Label();
-			this.getbalance_conf_num = new System.Windows.Forms.NumericUpDown();
-			this.button_getbalance_conf = new System.Windows.Forms.Button();
+			this.numeric_blanace_confirms = new System.Windows.Forms.NumericUpDown();
+			this.checkbox_use_confirmations = new System.Windows.Forms.CheckBox();
+			this.account_name = new System.Windows.Forms.TextBox();
+			this.button1 = new System.Windows.Forms.Button();
 			this.button_get_fullBalance = new System.Windows.Forms.Button();
 			this.panel1 = new System.Windows.Forms.Panel();
 			this.groupBox3 = new System.Windows.Forms.GroupBox();
@@ -79,7 +80,7 @@ namespace LibTest
 			((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
 			this.tabPage2.SuspendLayout();
 			this.Баланс.SuspendLayout();
-			((System.ComponentModel.ISupportInitialize)(this.getbalance_conf_num)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.numeric_blanace_confirms)).BeginInit();
 			this.panel1.SuspendLayout();
 			this.groupBox3.SuspendLayout();
 			this.SuspendLayout();
@@ -320,50 +321,61 @@ namespace LibTest
 			// 
 			// Баланс
 			// 
-			this.Баланс.Controls.Add(this.label8);
-			this.Баланс.Controls.Add(this.getbalance_conf_num);
-			this.Баланс.Controls.Add(this.button_getbalance_conf);
+			this.Баланс.Controls.Add(this.numeric_blanace_confirms);
+			this.Баланс.Controls.Add(this.checkbox_use_confirmations);
+			this.Баланс.Controls.Add(this.account_name);
+			this.Баланс.Controls.Add(this.button1);
 			this.Баланс.Controls.Add(this.button_get_fullBalance);
 			this.Баланс.Location = new System.Drawing.Point(8, 6);
 			this.Баланс.Name = "Баланс";
-			this.Баланс.Size = new System.Drawing.Size(540, 94);
+			this.Баланс.Size = new System.Drawing.Size(540, 136);
 			this.Баланс.TabIndex = 0;
 			this.Баланс.TabStop = false;
-			this.Баланс.Text = "groupBox4";
+			this.Баланс.Text = "Баланс";
 			// 
-			// label8
+			// numeric_blanace_confirms
 			// 
-			this.label8.Location = new System.Drawing.Point(230, 48);
-			this.label8.Name = "label8";
-			this.label8.Size = new System.Drawing.Size(100, 23);
-			this.label8.TabIndex = 2;
-			this.label8.Text = "подтверждений";
-			// 
-			// getbalance_conf_num
-			// 
-			this.getbalance_conf_num.Location = new System.Drawing.Point(140, 48);
-			this.getbalance_conf_num.Name = "getbalance_conf_num";
-			this.getbalance_conf_num.Size = new System.Drawing.Size(83, 20);
-			this.getbalance_conf_num.TabIndex = 1;
-			this.getbalance_conf_num.Value = new decimal(new int[] {
-									1,
+			this.numeric_blanace_confirms.Location = new System.Drawing.Point(336, 103);
+			this.numeric_blanace_confirms.Maximum = new decimal(new int[] {
+									9999999,
 									0,
 									0,
 									0});
+			this.numeric_blanace_confirms.Name = "numeric_blanace_confirms";
+			this.numeric_blanace_confirms.Size = new System.Drawing.Size(198, 20);
+			this.numeric_blanace_confirms.TabIndex = 4;
 			// 
-			// button_getbalance_conf
+			// checkbox_use_confirmations
 			// 
-			this.button_getbalance_conf.Location = new System.Drawing.Point(6, 48);
-			this.button_getbalance_conf.Name = "button_getbalance_conf";
-			this.button_getbalance_conf.Size = new System.Drawing.Size(127, 23);
-			this.button_getbalance_conf.TabIndex = 0;
-			this.button_getbalance_conf.Text = "Запросить баланс с";
-			this.button_getbalance_conf.UseVisualStyleBackColor = true;
-			this.button_getbalance_conf.Click += new System.EventHandler(this.Button_get_balanceConf);
+			this.checkbox_use_confirmations.Location = new System.Drawing.Point(336, 74);
+			this.checkbox_use_confirmations.Name = "checkbox_use_confirmations";
+			this.checkbox_use_confirmations.Size = new System.Drawing.Size(198, 24);
+			this.checkbox_use_confirmations.TabIndex = 3;
+			this.checkbox_use_confirmations.Text = "С учетом подтверждений";
+			this.checkbox_use_confirmations.UseVisualStyleBackColor = true;
+			// 
+			// account_name
+			// 
+			this.account_name.Location = new System.Drawing.Point(336, 48);
+			this.account_name.Name = "account_name";
+			this.account_name.Size = new System.Drawing.Size(198, 20);
+			this.account_name.TabIndex = 2;
+			this.account_name.Text = "account";
+			this.account_name.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+			// 
+			// button1
+			// 
+			this.button1.Location = new System.Drawing.Point(336, 19);
+			this.button1.Name = "button1";
+			this.button1.Size = new System.Drawing.Size(198, 23);
+			this.button1.TabIndex = 1;
+			this.button1.Text = "Запросить баланс по аккаунту";
+			this.button1.UseVisualStyleBackColor = true;
+			this.button1.Click += new System.EventHandler(this.getbalance_by_accountClick);
 			// 
 			// button_get_fullBalance
 			// 
-			this.button_get_fullBalance.Location = new System.Drawing.Point(6, 19);
+			this.button_get_fullBalance.Location = new System.Drawing.Point(61, 62);
 			this.button_get_fullBalance.Name = "button_get_fullBalance";
 			this.button_get_fullBalance.Size = new System.Drawing.Size(198, 23);
 			this.button_get_fullBalance.TabIndex = 0;
@@ -431,14 +443,16 @@ namespace LibTest
 			((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
 			this.tabPage2.ResumeLayout(false);
 			this.Баланс.ResumeLayout(false);
-			((System.ComponentModel.ISupportInitialize)(this.getbalance_conf_num)).EndInit();
+			this.Баланс.PerformLayout();
+			((System.ComponentModel.ISupportInitialize)(this.numeric_blanace_confirms)).EndInit();
 			this.panel1.ResumeLayout(false);
 			this.groupBox3.ResumeLayout(false);
 			this.ResumeLayout(false);
 		}
-		private System.Windows.Forms.Button button_getbalance_conf;
-		private System.Windows.Forms.NumericUpDown getbalance_conf_num;
-		private System.Windows.Forms.Label label8;
+		private System.Windows.Forms.CheckBox checkbox_use_confirmations;
+		private System.Windows.Forms.NumericUpDown numeric_blanace_confirms;
+		private System.Windows.Forms.Button button1;
+		private System.Windows.Forms.TextBox account_name;
 		private System.Windows.Forms.Button button_get_fullBalance;
 		private System.Windows.Forms.GroupBox Баланс;
 		private System.Windows.Forms.Panel panel1;
