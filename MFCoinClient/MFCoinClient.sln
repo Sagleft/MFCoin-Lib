@@ -1,0 +1,24 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+# SharpDevelop 4.4
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MFCoinClient", "MFCoinClient.csproj", "{022CA11D-2A8C-4710-BB6C-57DAF5981AFE}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LibTest", "..\LibTest\LibTest.csproj", "{EAE2984D-F150-47C2-AEFC-68ABFA8BB514}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{022CA11D-2A8C-4710-BB6C-57DAF5981AFE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{022CA11D-2A8C-4710-BB6C-57DAF5981AFE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{022CA11D-2A8C-4710-BB6C-57DAF5981AFE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{022CA11D-2A8C-4710-BB6C-57DAF5981AFE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EAE2984D-F150-47C2-AEFC-68ABFA8BB514}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EAE2984D-F150-47C2-AEFC-68ABFA8BB514}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EAE2984D-F150-47C2-AEFC-68ABFA8BB514}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EAE2984D-F150-47C2-AEFC-68ABFA8BB514}.Release|Any CPU.ActiveCfg = Release|Any CPU
+	EndGlobalSection
+EndGlobal
