@@ -57,6 +57,9 @@
   <ItemGroup>
     <Compile Include="MFCoinClient\BitnetAPI.cs" />
     <Compile Include="MFCoinClient\Constructor.cs" />
+    <Compile Include="MFCoinClient\EmerAPI.cs" />
+    <Compile Include="MFCoinClient\Enums\EnumExtenders.cs" />
+    <Compile Include="MFCoinClient\Enums\Enums.cs" />
     <Compile Include="MFCoinClient\ExtendedAPI.cs" />
     <Compile Include="MFCoinClient\Helpers.cs" />
     <Compile Include="MFCoinClient\Interface.cs" />
@@ -64,6 +67,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="MFCoinClient" />
+    <Folder Include="MFCoinClient\Enums" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

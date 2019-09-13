@@ -2,82 +2,86 @@
 using System.Collections.Generic;
 using System.Drawing;
 using System.Windows.Forms;
-using Sagleft.MFCoin;
+using System.IO;
+using MFCoin.Client;
 
-namespace LibTest {
-	public partial class MainForm : Form {
-		MFCoin mfcoin_client;
-		bool is_connected = false;
+namespace LibTest
+{
+	/// <summary>
+	/// Description of MainForm.
+	/// </summary>
+	public partial class MainForm : Form
+	{
+		private Logic logic;
+		int x, y;
+    	bool drag = false;
+    	Loger loger;
+    	string filepath = "";
 		
-		public MainForm() {
+    	private void dragForm(object sender, MouseEventArgs e) {
+			if (drag == false) { x = e.X; y = e.Y; drag = true; }
+			if (e.Button.ToString() == "Left") {
+				this.Location = new Point(this.Left + e.X - x, this.Top + e.Y - y);
+			} else { drag = false; }
+	    }
+    	
+		public MainForm()
+		{
 			InitializeComponent();
-		}
-		
-		void show_msg(string info) {
-			MessageBox.Show(info, "OK", MessageBoxButtons.OK, MessageBoxIcon.Information);
-		}
-		
-		void write_log(string info) {
-			log_w.Text += "\r > "+info;
-		}
-		
-		public void clear_log() {
-			log_w.Text = "";
-		}
-		
-		void Button_authClick(object sender, EventArgs e) {
-			int port;
-			decimal balance = 0;
-			string host = "http://"+rpc_host.Text;
+			logic = new Logic();
+			loger = new Loger(textBox_log);
+			logic.setLoger(loger);
 			
-			write_log("Пытаюсь подключиться...");
-			if(Int32.TryParse(rpc_port.Text, out port)) {
-				try {
-					mfcoin_client = new MFCoin(host, port);
-					is_connected = mfcoin_client.rpcauth(rpc_user.Text, rpc_password.Text);
-					balance = mfcoin_client.getbalance();
-					
-					if(!(balance >= 0)) {
-						write_log("Что-то пошло не так. Не вышло получить доступ по RPC");
-					} else {
-						write_log("Подключение прошло успешно");
-					}
-				} catch(Exception exc) {
-					write_log("Выловлена ошибка: "+exc.Message);
-					is_connected = false;
-				}
+			windowTitle.MouseClick += new System.Windows.Forms.MouseEventHandler(this.dragForm);
+	        windowTitle.MouseMove  += new System.Windows.Forms.MouseEventHandler(this.dragForm);
+		}
+		
+		void Button_minimizeClick(object sender, EventArgs e)
+		{
+			this.WindowState = FormWindowState.Minimized;
+		}
+		
+		void Button_exitClick(object sender, EventArgs e)
+		{
+			Application.Exit();
+		}
+		
+		void Btn_connectClick(object sender, EventArgs e)
+		{
+			logic.connect(
+				textBox_rpchost.Text,
+				textBox_rpcuser.Text,
+				textBox_rpcpassword.Text,
+				textBox_rpcport.Text
+			);
+		}
+		
+		void Btnlog_clearClick(object sender, EventArgs e)
+		{
+			textBox_log.Clear();
+		}
+		
+		void Btn_newRandNameClick(object sender, EventArgs e)
+		{
+			logic.NVS_createRandomName();
+		}
+		
+		void Btn_chooseFileClick(object sender, EventArgs e)
+		{
+			OpenFileDialog OFD = new OpenFileDialog();
+            if (OFD.ShowDialog() == DialogResult.OK)
+            {
+                filepath = OFD.FileName;
+                loger.print("Выбран файл: " + filepath);
+            }
+		}
+		
+		void Btn_writeBase64fileClick(object sender, EventArgs e)
+		{
+			if(filepath == "" || !File.Exists(filepath)) {
+				loger.print("Файл не выбран");
 			} else {
-				write_log("Не могу разобрать что вы там ввели в качестве порта");
-			}
-			pic_isConnected.Visible = is_connected;
-		}
-		
-		void Button_clearlogClick(object sender, EventArgs e) {
-			clear_log();
-		}
-		
-		void Button_get_fullBalanceClick(object sender, EventArgs e) {
-			decimal wallet_balance;
-			try {
-				wallet_balance = mfcoin_client.getbalance();
-				write_log("Суммарный баланс: "+wallet_balance.ToString());
-			} catch(Exception exc) {
-				write_log("Выловлена ошибка: "+exc.Message);
-			}
-		}
-		
-		void getbalance_by_accountClick(object sender, EventArgs e) {
-			decimal wallet_balance;
-			try {
-				if(checkbox_use_confirmations.Checked == true) {
-					wallet_balance = mfcoin_client.getbalance(account_name.Text, (int)numeric_blanace_confirms.Value);
-				} else {
-					wallet_balance = mfcoin_client.getbalance(account_name.Text);
-				}
-				
-				write_log("Суммарный баланс: "+wallet_balance.ToString());
-			} catch(Exception exc) {
-				write_log("Выловлена ошибка: "+exc.Message);
+				logic.NVS_uploadFile(filepath);
 			}
 		}
 	}

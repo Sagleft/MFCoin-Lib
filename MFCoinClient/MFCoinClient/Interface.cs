@@ -7,6 +7,7 @@
 using System;
 using System.Collections.Generic;
 using Newtonsoft.Json.Linq;
+using MFCoin.Client.Enums;
 #endregion
 
 namespace MFCoin.Client
@@ -255,5 +256,24 @@ namespace MFCoin.Client
     /// <param name="jobject">объект, который надо конвертировать</param>
     /// <returns>возвращает словарь ключ-значение</returns>
     Dictionary<string, string> Jobject2Dict(JObject jobject);
+    
+    #region EmerAPI
+    /// <summary>
+    /// Добавить новую запись в Blockchain
+    /// </summary>
+    /// <param name="entry_name">название записи</param>
+    /// <param name="entry_value">данные для записи</param>
+    /// <param name="register_days">на сколько дней записать</param>
+    /// <param name="to_address">адрес, которому передать запись. если пустое значение, то оставить запись себе</param>
+    /// <param name="value_type">тип данных для записи</param>
+    /// <returns>ID транзакции</returns>
+    string NVS_NameNew(
+    	string entry_name         = "dpo:test",
+		string entry_value        = "value",
+		int register_days         = 30,
+		string to_address         = "", //empty - transcation to yourself
+		NVS_ValueType value_type  = NVS_ValueType.Unicode
+	);
+    #endregion
   }
 }

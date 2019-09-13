@@ -11,7 +11,6 @@ namespace LibTest
 		/// <summary>
 		/// Program entry point.
 		/// </summary>
-		
 		[STAThread]
 		private static void Main(string[] args)
 		{
@@ -19,5 +18,6 @@ namespace LibTest
 			Application.SetCompatibleTextRenderingDefault(false);
 			Application.Run(new MainForm());
 		}
+		
 	}
 }
