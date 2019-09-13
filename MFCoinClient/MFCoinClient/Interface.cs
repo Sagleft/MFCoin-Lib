@@ -1,9 +1,13 @@
-﻿// COPYRIGHT 2011 Konstantin Ineshin, Irkutsk, Russia.
+﻿#region copyright
+// COPYRIGHT 2011 Konstantin Ineshin, Irkutsk, Russia.
 // COPYRIGHT 2019 Sagleft, Freeland.
+#endregion
 
+#region using
 using System;
 using System.Collections.Generic;
 using Newtonsoft.Json.Linq;
+#endregion
 
 namespace MFCoin.Client
 {
@@ -244,5 +248,12 @@ namespace MFCoin.Client
     /// </summary>
     /// <param name="a_address"></param>
     JObject ValidateAddress(string a_address);
+    
+    /// <summary>
+    /// Конвертация объекта JObject (параметр->значение) в словарь (ключ->значение)
+    /// </summary>
+    /// <param name="jobject">объект, который надо конвертировать</param>
+    /// <returns>возвращает словарь ключ-значение</returns>
+    Dictionary<string, string> Jobject2Dict(JObject jobject);
   }
 }
